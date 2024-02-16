@@ -31,20 +31,25 @@
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": "warn"
   },
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "overrides": [
     {
+      "files": ["./src/**/*.ts"],
+      "parserOptions": { "project": "./tsconfig.json" }
+    },
+    {
       "files": ["./build.config.ts", "./build/*.ts"],
-      "parserOptions": { "project": "./tsconfig.build.json" },
+      "parserOptions": {
+        "project": "./tsconfig.build.json"
+      },
       "rules": {
         "no-console": "off"
       }
     },
     {
       "files": ["./vitest.config.ts", "./test/*.test.ts", "./test/utils/*.ts"],
-      "parserOptions": { "project": "./tsconfig.tests.json" },
+      "parserOptions": {
+        "project": "./tsconfig.tests.json"
+      },
       "rules": {
         "no-console": "off"
       }

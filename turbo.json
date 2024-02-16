@@ -1,0 +1,15 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "@vintl/unplugin#build": {
+      "outputs": ["dist"]
+    },
+    "@vintl/unplugin#lint": {},
+    "//#build": {
+      "dependsOn": ["@vintl/unplugin#build"]
+    },
+    "//#lint": {
+      "dependsOn": ["@vintl/unplugin#lint"]
+    }
+  }
+}

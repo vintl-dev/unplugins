@@ -17,19 +17,17 @@ import { wrapPlugins } from './wrapper.ts'
 export function vite(
   options: NormalizedOptions<VitePlugin>,
   filter: FilterFunction,
-) {
-  return (
-    options.use
-      ? {
-          configResolved(config) {
-            wrapPlugins(config.plugins, options, filter, (warning) => {
-              // eslint-disable-next-line no-console
-              console.warn(String(warning))
-            })
-          },
-        }
-      : {}
-  ) satisfies Omit<VitePlugin, 'name'>
+): Omit<VitePlugin, 'name'> {
+  return options.use
+    ? {
+        configResolved(config) {
+          wrapPlugins(config.plugins, options, filter, (warning) => {
+            // eslint-disable-next-line no-console
+            console.warn(String(warning))
+          })
+        },
+      }
+    : {}
 }
 
 /**
@@ -45,23 +43,18 @@ export function vite(
 export function rollup(
   options: NormalizedOptions<RollupPlugin>,
   filter: FilterFunction,
-) {
-  return (
-    options.use
-      ? {
-          buildStart(
-            this: Partial<Pick<PluginContext, 'warn'>>,
-            rollupOptions,
-          ) {
-            wrapPlugins(
-              rollupOptions.plugins,
-              options,
-              filter,
-              // eslint-disable-next-line no-console
-              this?.warn ?? ((warn) => console.warn(warn)),
-            )
-          },
-        }
-      : {}
-  ) satisfies Omit<RollupPlugin, 'name'>
+): Omit<RollupPlugin, 'name'> {
+  return options.use
+    ? {
+        buildStart(this: Partial<Pick<PluginContext, 'warn'>>, rollupOptions) {
+          wrapPlugins(
+            rollupOptions.plugins,
+            options,
+            filter,
+            // eslint-disable-next-line no-console
+            this?.warn ?? ((warn) => console.warn(warn)),
+          )
+        },
+      }
+    : {}
 }
