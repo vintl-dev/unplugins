@@ -5,6 +5,12 @@
   "description": "Monorepository for all the Unplugins related to VIntl library",
   "repository": "github:vintl-dev/unplugins",
   "license": "MIT",
+  "scripts": {
+    "all:ts-check": "turbo ts-check",
+    "all:lint": "turbo lint",
+    "all:build": "turbo build",
+    "all:test": "turbo test"
+  },
   "engines": {
     "node": ">=16"
   },

@@ -51,13 +51,13 @@ jobs:
         run: pnpm install
 
       - name: Run TypeScript (no emit)
-        run: pnpm tsc:check
+        run: pnpm all:ts-check
 
       - name: Build
-        run: pnpm build
+        run: pnpm all:build
 
       - name: Run tests
-        run: pnpm test
+        run: pnpm all:test
 
       - name: Release
         if: github.repository_owner == 'vintl-dev'

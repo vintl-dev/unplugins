@@ -5,11 +5,21 @@
       "outputs": ["dist"]
     },
     "@vintl/unplugin#lint": {},
+    "@vintl/unplugin#tsc:check": {},
+    "@vintl/unplugin#test": {
+      "dependsOn": ["@vintl/unplugin#build"]
+    },
     "//#build": {
       "dependsOn": ["@vintl/unplugin#build"]
     },
     "//#lint": {
       "dependsOn": ["@vintl/unplugin#lint"]
+    },
+    "//#ts-check": {
+      "dependsOn": ["@vintl/unplugin#tsc:check"]
+    },
+    "//#test": {
+      "dependsOn": ["@vintl/unplugin#test"]
     }
   }
 }
